@@ -6,14 +6,19 @@ import java.util.*;
 
 public class AD2_POO_2020_2 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        Scanner sc = new Scanner(System.in);
+        if(args.length == 0) {
+            throw new IOException("Arquivo não informado");
+        }
+
+        String arquivo = args[0];
+
+        Scanner sc = new Scanner(arquivo);
         ArrayList<Integer> nodes = new ArrayList<>();
         List<String[]> edges = new ArrayList<>();
         Grafo grafo = new Grafo();
 
-        System.out.println("Enter a file path: ");
         File file = new File(sc.nextLine());
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -58,8 +63,6 @@ public class AD2_POO_2020_2 {
             grafo.addConexao(node, adj);
             adj = new ArrayList<>(Collections.nCopies(nodes.size(), 0));
         }
-
-        System.out.println(grafo.getGrafo());
         System.out.println(grafo);
     }
 }
